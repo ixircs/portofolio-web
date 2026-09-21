@@ -1,52 +1,5 @@
-type Project = {
-  title: string;
-  period: string;
-  description: string;
-  stack: string[];
-  result: string;
-  repo?: string;
-  note?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Student Placement Predictor",
-    period: "2026",
-    description:
-      "Solo end-to-end ML pipeline (ingestion → feature engineering → training → evaluation) with two deployment architectures: a monolithic Streamlit app and a decoupled FastAPI + Streamlit service.",
-    stack: ["Python", "scikit-learn", "MLflow", "FastAPI", "Streamlit"],
-    result: "ROC-AUC 0.903 · R² 0.577 / MAE 2.70 LPA",
-    repo: "https://github.com/ixircs/student-placement-predictor",
-  },
-  {
-    title: "Credit Score Deployment",
-    period: "2026",
-    description:
-      "Local (MLflow-tracked) and cloud (AWS SageMaker + EC2) deployment pipelines for a 3-class credit risk classifier, served via a public Streamlit app calling a live SageMaker endpoint.",
-    stack: ["Python", "XGBoost", "AWS SageMaker", "EC2"],
-    result: "Tuned XGBoost · Macro F1 0.7245",
-    repo: "https://github.com/ixircs/credit-score-deployment",
-  },
-  {
-    title: "Disaster Image Classification",
-    period: "2026",
-    description:
-      "Compared CNN-from-scratch, EfficientNet-B0, and MobileNetV2 on a 29:1 imbalanced 4-class dataset. Team of 2.",
-    stack: ["Python", "TensorFlow/Keras", "pandas", "matplotlib"],
-    result: "EfficientNet-B0 · Macro F1 0.7643 · 87.46% acc",
-    repo: "https://github.com/ixircs/disaster-image-classification",
-  },
-  {
-    title: "ASA DataFest 2026: ED Barriers",
-    period: "2026",
-    description:
-      "Identified transportation and financial barriers driving higher emergency department utilization; validated externally against ACS Census vehicle-access data. Team of 4.",
-    stack: ["Python", "Jupyter"],
-    result: "40.1% vs 8.4% ED visit rate · ~5x",
-    repo: "https://github.com/ixircs/asa-datafest-2026-ed-barriers",
-    note: "Dataset under a competition data-use restriction — repo contains analysis only, no raw data.",
-  },
-];
+import Link from "next/link";
+import { projects } from "@/data/projects";
 
 const otherWork = {
   title: "CompFest 18 DAD (Data Analytics Dash)",
@@ -102,22 +55,17 @@ function Kicker({ children }: { children: React.ReactNode }) {
 export default function Home() {
   return (
     <div className="relative overflow-hidden">
-      {/* ambient glow */}
+      {/* ambient warmth */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.15] blur-[120px]"
-        style={{ background: "var(--accent)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-[600px] -right-40 h-[400px] w-[400px] rounded-full opacity-[0.08] blur-[100px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.12] blur-[120px]"
         style={{ background: "var(--accent)" }}
       />
 
       <div className="relative mx-auto w-full max-w-3xl px-6 py-20 sm:py-28">
         {/* Hero */}
         <header className="mb-24">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-xs text-neutral-300">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-xs text-[var(--muted)] shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
             Open to Data Science / Analyst internships
           </div>
@@ -127,7 +75,7 @@ export default function Home() {
             <br />
             Setiawan
           </h1>
-          <p className="mt-4 max-w-xl text-base sm:text-lg text-neutral-400 leading-relaxed">
+          <p className="mt-4 max-w-xl text-base sm:text-lg text-[var(--muted)] leading-relaxed">
             Data Science student at BINUS University — building and
             deploying machine learning models, from data pipeline to cloud.
           </p>
@@ -139,11 +87,11 @@ export default function Home() {
                 href={l.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-neutral-200 transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] shadow-sm transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-4 w-4 fill-neutral-400 transition-colors group-hover:fill-[var(--accent)]"
+                  className="h-4 w-4 fill-[var(--muted)] transition-colors group-hover:fill-[var(--accent)]"
                 >
                   {l.icon}
                 </svg>
@@ -159,24 +107,27 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-8">Featured Projects</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             {projects.map((p) => (
-              <article
-                key={p.title}
-                className="group relative flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+              <Link
+                key={p.slug}
+                href={`/projects/${p.slug}`}
+                className="group relative flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-[0_10px_30px_rgba(138,90,52,0.15)]"
               >
                 <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-medium text-neutral-100">{p.title}</h3>
-                  <span className="text-xs text-neutral-500 whitespace-nowrap">
+                  <h3 className="font-medium text-[var(--foreground)]">
+                    {p.title}
+                  </h3>
+                  <span className="text-xs text-[var(--muted)] whitespace-nowrap">
                     {p.period}
                   </span>
                 </div>
-                <p className="text-sm text-neutral-400 leading-relaxed">
+                <p className="text-sm text-[var(--muted)] leading-relaxed">
                   {p.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {p.stack.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-300"
+                      className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs text-[var(--accent)]"
                     >
                       {s}
                     </span>
@@ -186,22 +137,17 @@ export default function Home() {
                   {p.result}
                 </p>
                 {p.note && (
-                  <p className="text-xs text-neutral-500 italic">{p.note}</p>
+                  <p className="text-xs text-[var(--muted)] italic">
+                    {p.note}
+                  </p>
                 )}
-                {p.repo && (
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-1 inline-flex items-center gap-1 text-sm text-neutral-400 transition-colors group-hover:text-[var(--accent)]"
-                  >
-                    View repository
-                    <span className="transition-transform group-hover:translate-x-0.5">
-                      →
-                    </span>
-                  </a>
-                )}
-              </article>
+                <span className="mt-1 inline-flex items-center gap-1 text-sm text-[var(--muted)] transition-colors group-hover:text-[var(--accent)]">
+                  View case study
+                  <span className="transition-transform group-hover:translate-x-0.5">
+                    →
+                  </span>
+                </span>
+              </Link>
             ))}
           </div>
         </section>
@@ -210,18 +156,18 @@ export default function Home() {
         <section className="mb-20">
           <Kicker>Competitions</Kicker>
           <h2 className="text-2xl font-semibold mb-8">Other Work</h2>
-          <article className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6">
-            <h3 className="font-medium text-neutral-100">
+          <article className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm">
+            <h3 className="font-medium text-[var(--foreground)]">
               {otherWork.title}
             </h3>
-            <p className="text-sm text-neutral-400 leading-relaxed">
+            <p className="text-sm text-[var(--muted)] leading-relaxed">
               {otherWork.description}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {otherWork.stack.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full bg-white/5 px-2 py-0.5 text-xs text-neutral-300"
+                  className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs text-[var(--accent)]"
                 >
                   {s}
                 </span>
@@ -230,7 +176,7 @@ export default function Home() {
             <p className="text-sm font-medium text-[var(--accent)]">
               {otherWork.result}
             </p>
-            <p className="text-xs text-neutral-500 italic">
+            <p className="text-xs text-[var(--muted)] italic">
               Repo not published yet.
             </p>
           </article>
@@ -246,14 +192,14 @@ export default function Home() {
                 key={g.label}
                 className="flex flex-col gap-2 sm:flex-row sm:items-center"
               >
-                <span className="w-40 shrink-0 text-xs uppercase tracking-wide text-neutral-500">
+                <span className="w-40 shrink-0 text-xs uppercase tracking-wide text-[var(--muted)]">
                   {g.label}
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {g.items.map((s) => (
                     <span
                       key={s}
-                      className="rounded-full border border-[var(--border)] px-3 py-1 text-sm text-neutral-300"
+                      className="rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-sm text-[var(--foreground)]"
                     >
                       {s}
                     </span>
@@ -265,7 +211,7 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="flex flex-col gap-4 border-t border-[var(--border)] pt-8 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+        <footer className="flex flex-col gap-4 border-t border-[var(--border)] pt-8 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>Jakarta, Indonesia</p>
           <div className="flex gap-4">
             {links.map((l) => (
