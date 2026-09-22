@@ -56,16 +56,28 @@ export default async function ProjectPage({
             ))}
           </div>
 
-          {project.repo && (
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] shadow-sm transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-            >
-              View repository on GitHub →
-            </a>
-          )}
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] shadow-sm transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              >
+                View repository on GitHub →
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-4 py-2 text-sm text-[var(--accent)] shadow-sm transition-colors hover:border-[var(--accent)]"
+              >
+                Open live app →
+              </a>
+            )}
+          </div>
 
           {project.note && (
             <p className="mt-4 text-xs text-[var(--muted)] italic max-w-xl">
