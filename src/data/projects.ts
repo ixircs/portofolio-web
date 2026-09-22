@@ -9,6 +9,7 @@ export type Project = {
   stack: string[];
   result: string;
   repo?: string;
+  demo?: string;
   note?: string;
   summary: string;
   metrics: { label: string; value: string }[];
@@ -179,6 +180,44 @@ export const projects: Project[] = [
       { src: "/projects/coffee-weather-shocks/daily_ar_2021.png", caption: "Daily abnormal returns around the 20 July 2021 frost", width: 1800, height: 825 },
       { src: "/projects/coffee-weather-shocks/forecast_comparison.png", caption: "Six-month-ahead walk-forward forecasts against realised prices", width: 1800, height: 900 },
     ],
+  },
+  {
+    slug: "bfull",
+    title: "bfull — Order-Ahead Canteen App",
+    period: "2026",
+    team: "Team of 7",
+    description:
+      "Cross-platform (web + Android) order-ahead app for the BINUS canteen: live queue board, tray, QRIS payment simulation and real-time order tracking. Built for the Human & Computer Interaction course and tested with 20 users.",
+    stack: ["Expo / React Native", "Expo Router", "NativeWind", "TypeScript", "Figma"],
+    result: "4.80/5 overall satisfaction (n = 20 user testers)",
+    repo: "https://github.com/ixircs/bfull-app",
+    demo: "https://bfull.expo.app",
+    summary:
+      "Students at the BINUS canteen get 20\u201330 minutes between classes, and most of it goes to queueing and waiting. bfull moves the whole ordering flow onto the phone: browse by tenant or by dish, see how long each stall\u2019s queue is, pay cashlessly, then track the order from Confirmed to Ready and walk over only when the food is done. One Expo/React Native codebase ships to the browser and to Android.",
+    metrics: [
+      { label: "User testers", value: "20 (11 desktop · 9 mobile)" },
+      { label: "Overall satisfaction", value: "4.80 / 5.00" },
+      { label: "Usable without instructions", value: "4.75 / 5.00" },
+      { label: "Flow logic (login → tracking)", value: "4.45 / 5.00" },
+      { label: "Visual clarity", value: "4.45 / 5.00" },
+      { label: "Task completion without issues", value: ">90% of participants" },
+      { label: "Estimated break time saved", value: "8–12 min (55% of testers)" },
+    ],
+    methodology: [
+      "Framed the problem from the real constraint: a 20–30 minute break, three overlapping bottlenecks (queue congestion, unproductive cooking wait, no visibility into stock or queue length).",
+      "Designed the interface in Figma and iterated through paper prototyping and heuristic evaluation before writing front-end code — cheaper to rework a mental-model mistake on paper than in React Native.",
+      "Built the high-fidelity prototype in Expo/React Native with Expo Router and NativeWind, using a React Context store for the cart and AsyncStorage for session persistence, so state survives navigation and reloads.",
+      "Applied specific HCI principles as implementation decisions: single-tenant cart guard and hidden checkout on an empty tray (error prevention), a three-stage order tracker (visibility of system status), and one consistent orange signifier for every primary action.",
+      "Ran user testing with 20 BINUS students on real devices (11 laptop, 9 mobile), each completing five unguided task scenarios from login to delay notification, then rated usability on a 1–5 Likert questionnaire.",
+      "Documented the prototype's honest limits in the report: QRIS payment is a simulated pop-up, persistence is local-only (AsyncStorage), so cross-device continuity and network-latency behaviour were not testable.",
+    ],
+    images: [
+      { src: "/projects/bfull/home.png", caption: "Home — live canteen queue board (per-tenant load and wait estimate) above search, category filters and the menu grid", width: 1216, height: 941 },
+      { src: "/projects/bfull/tray.png", caption: "Tray — single-tenant cart with quantity steppers, vouchers and live total", width: 936, height: 936 },
+      { src: "/projects/bfull/payment.png", caption: "Cashless payment — simulated QRIS pop-up over the tray", width: 944, height: 857 },
+      { src: "/projects/bfull/order_tracking.png", caption: "Order tracker — Confirmed → Cooking → Ready with estimated pickup time", width: 942, height: 375 },
+    ],
+    note: "Team project (Kelompok 3, HCI course, 7 members). My role: UI/UX design in Figma, feature implementation, and repository/deployment setup. High-fidelity prototype — payment is simulated, no production backend.",
   },
 ];
 
