@@ -191,7 +191,7 @@ export const projects: Project[] = [
     stack: ["Expo / React Native", "Expo Router", "NativeWind", "TypeScript", "Figma"],
     result: "4.80/5 overall satisfaction (n = 20 user testers)",
     repo: "https://github.com/ixircs/bfull-app",
-    demo: "https://bfull.expo.app",
+    demo: "https://ryanchristopher-bfull.expo.app",
     summary:
       "Students at the BINUS canteen get 20\u201330 minutes between classes, and most of it goes to queueing and waiting. bfull moves the whole ordering flow onto the phone: browse by tenant or by dish, see how long each stall\u2019s queue is, pay cashlessly, then track the order from Confirmed to Ready and walk over only when the food is done. One Expo/React Native codebase ships to the browser and to Android.",
     metrics: [
