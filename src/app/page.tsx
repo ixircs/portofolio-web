@@ -30,7 +30,7 @@ const links = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ryan-christopher-setiawan-517193324/",
+    href: "https://www.linkedin.com/in/ryan-christopher-setiawan/",
     icon: (
       <path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.5 8.5h3.4V21H3.5V8.5Zm6.2 0h3.26v1.71h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-6.63c0-1.58-.03-3.61-2.2-3.61-2.21 0-2.55 1.72-2.55 3.5V21H9.7V8.5Z" />
     ),
