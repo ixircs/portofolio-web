@@ -28,6 +28,7 @@ export const projects: Project[] = [
     stack: ["Python", "scikit-learn", "MLflow", "FastAPI", "Streamlit"],
     result: "ROC-AUC 0.903 · R² 0.577 / MAE 2.70 LPA",
     repo: "https://github.com/ixircs/student-placement-predictor",
+    demo: "https://student-placement-predictor-nwstbcxym3fqitybwgxi7i.streamlit.app/",
     summary:
       "Two prediction tasks on the same dataset: a classifier for placement outcome and a regressor for expected salary (LPA). Built twice — once as a single Streamlit app, once as a FastAPI backend behind a separate Streamlit frontend — to compare monolithic vs. decoupled serving.",
     metrics: [
