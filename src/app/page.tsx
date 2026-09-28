@@ -4,9 +4,12 @@ import { projects } from "@/data/projects";
 const otherWork = {
   title: "CompFest 18 DAD (Data Analytics Dash)",
   description:
-    "Qualified to Top 15 via a real-time SQL query online-judge round. Built a star-schema data model (dim_negara, dim_provinsi, dim_tahun + fact tables) in Python/pandas and a Power BI dashboard.",
-  stack: ["Python", "SQL", "pandas", "Power BI"],
-  result: "ρ = -0.79 · internet price vs. users, 186 countries",
+    "Top 15 finalist, qualified through a real-time SQL query online-judge round. The final deliverable is a three-part Tableau dashboard on Indonesia\u2019s urban\u2013rural digital divide across 38 provinces \u2014 access, the official digital-literacy index, and where to act \u2014 built on a star-schema model prepared in Python/pandas.",
+  stack: ["SQL", "Python", "pandas", "Tableau"],
+  result:
+    "Phones are equal (1.00\u00d7) but laptops are not (2.80\u00d7) \u2014 the gap moved to device, not connection",
+  demo: "https://public.tableau.com/app/profile/sebastian.1749/viz/Dashboard_17903169196680/1",
+  note: "Team project (Data Seeker). Dashboard published on a teammate\u2019s Tableau Public account.",
 };
 
 const skillGroups: { label: string; items: string[] }[] = [
@@ -17,7 +20,7 @@ const skillGroups: { label: string; items: string[] }[] = [
   },
   { label: "Deployment", items: ["FastAPI", "Streamlit", "MLflow"] },
   { label: "Cloud & Data", items: ["AWS SageMaker", "pandas", "NumPy"] },
-  { label: "Tools", items: ["Power BI", "Git"] },
+  { label: "Tools", items: ["Tableau", "Git"] },
 ];
 
 const links = [
@@ -176,8 +179,16 @@ export default function Home() {
             <p className="text-sm font-medium text-[var(--accent)]">
               {otherWork.result}
             </p>
+            <a
+              href={otherWork.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-4 py-2 text-sm text-[var(--accent)] shadow-sm transition-colors hover:border-[var(--accent)]"
+            >
+              View the dashboard →
+            </a>
             <p className="text-xs text-[var(--muted)] italic">
-              Repo not published yet.
+              {otherWork.note}
             </p>
           </article>
         </section>
