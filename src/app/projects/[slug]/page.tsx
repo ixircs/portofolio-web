@@ -19,10 +19,10 @@ export default async function ProjectPage({
   return (
     <main className="mx-auto w-full max-w-[1180px] px-5 sm:px-8">
       <header className="ruled-b flex items-baseline justify-between gap-4 py-4 text-[13px]">
-        <Link href="/" className="font-semibold tracking-tight text-[var(--oxblood)]">
-          ryan setiawan
+        <Link href="/" className="font-semibold tracking-tight text-[var(--plum)]">
+          Ryan Christopher Setiawan
         </Link>
-        <Link href="/" className="text-[var(--ink-soft)] hover:text-[var(--oxblood)]">
+        <Link href="/" className="text-[var(--ink-soft)] hover:text-[var(--plum)]">
           back to all work
         </Link>
       </header>
@@ -49,7 +49,7 @@ export default async function ProjectPage({
               href={project.repo}
               target="_blank"
               rel="noreferrer"
-              className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[15px] font-medium text-[var(--oxblood)]"
+              className="border-b-2 border-[var(--teal)] pb-0.5 text-[15px] font-medium text-[var(--teal)]"
             >
               Read the code on GitHub
             </a>
@@ -59,7 +59,7 @@ export default async function ProjectPage({
               href={project.demo}
               target="_blank"
               rel="noreferrer"
-              className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[15px] font-medium text-[var(--oxblood)]"
+              className="border-b-2 border-[var(--teal)] pb-0.5 text-[15px] font-medium text-[var(--teal)]"
             >
               Open the live app
             </a>
@@ -81,12 +81,12 @@ export default async function ProjectPage({
           {project.metrics.map((m) => (
             <div
               key={m.label}
-              className="ruled-b grid grid-cols-12 items-baseline gap-3 py-4 first:border-t first:border-[var(--sage-line)]"
+              className="ruled-b grid grid-cols-12 items-baseline gap-3 py-4 first:border-t first:border-[var(--rule)]"
             >
               <dt className="col-span-12 text-[15px] text-[var(--ink-soft)] sm:col-span-7">
                 {m.label}
               </dt>
-              <dd className="col-span-12 text-[18px] font-semibold tabular-nums text-[var(--oxblood)] sm:col-span-5 sm:text-right">
+              <dd className="col-span-12 text-[18px] font-semibold tabular-nums text-[var(--teal)] sm:col-span-5 sm:text-right">
                 {m.value}
               </dd>
             </div>
@@ -102,7 +102,7 @@ export default async function ProjectPage({
           {project.methodology.map((step, i) => (
             <li
               key={i}
-              className="ruled-b grid grid-cols-12 gap-x-5 py-5 first:border-t first:border-[var(--sage-line)]"
+              className="ruled-b grid grid-cols-12 gap-x-5 py-5 first:border-t first:border-[var(--rule)]"
             >
               <span className="col-span-2 text-[13px] tabular-nums text-[var(--ink-soft)] sm:col-span-1">
                 {String(i + 1).padStart(2, "0")}
@@ -121,7 +121,7 @@ export default async function ProjectPage({
           <div className="flex flex-col gap-12">
             {project.images.map((img) => (
               <figure key={img.src}>
-                <div className="border border-[var(--sage-line)] bg-[var(--paper)]">
+                <div className="border border-[var(--rule)] bg-[var(--paper)]">
                   <Image
                     src={img.src}
                     alt={img.caption}
@@ -143,7 +143,7 @@ export default async function ProjectPage({
       <section className="py-14 sm:py-20">
         <Link
           href="/"
-          className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[17px] font-medium text-[var(--oxblood)]"
+          className="border-b-2 border-[var(--teal)] pb-0.5 text-[17px] font-medium text-[var(--teal)]"
         >
           Back to all work
         </Link>
