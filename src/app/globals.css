@@ -1,38 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf6ef;
-  --foreground: #362a1e;
-  --muted: #7a6a58;
-  --accent: #8a5a34;
-  --accent-soft: rgba(138, 90, 52, 0.1);
-  --border: rgba(138, 90, 52, 0.18);
-  --card: #fffdf9;
+  /* sage ground, oxblood ink */
+  --sage: #c7d4be;
+  --sage-deep: #afc2a6;
+  --sage-line: #9bb093;
+  --oxblood: #6e1d1d;
+  --oxblood-soft: rgba(110, 29, 29, 0.08);
+  --paper: #f2f0e9;
+  --ink: #1a1e18;
+  --ink-soft: #4a5547;
+
+  --background: var(--sage);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-oxblood: var(--oxblood);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-archivo);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-synthesis-weight: none;
 }
 
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 ::selection {
-  background: var(--accent);
-  color: #fffdf9;
+  background: var(--oxblood);
+  color: var(--sage);
+}
+
+/* --- the signature device: a visible modular grid ------------------- */
+.ruled      { border-top: 1px solid var(--sage-line); }
+.ruled-b    { border-bottom: 1px solid var(--sage-line); }
+.ruled-l    { border-left: 1px solid var(--sage-line); }
+
+/* display type: oversized, lowercase, tight */
+.display {
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  text-transform: lowercase;
+  color: var(--oxblood);
+}
+
+/* the two-tier heading lead-in, as a sentence fragment not a label */
+.lead-in {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+  text-transform: lowercase;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 3px;
 }

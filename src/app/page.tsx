@@ -1,244 +1,232 @@
 import Link from "next/link";
+import Image from "next/image";
 import { projects } from "@/data/projects";
 
 const otherWork = {
-  title: "CompFest 18 DAD (Data Analytics Dash)",
+  title: "CompFest 18 — Data Analytics Dash",
   description:
-    "Top 15 finalist, qualified through a real-time SQL query online-judge round. The final deliverable is a three-part Tableau dashboard on Indonesia\u2019s urban\u2013rural digital divide across 38 provinces \u2014 access, the official digital-literacy index, and where to act \u2014 built on a star-schema model prepared in Python/pandas.",
+    "Finalist. Qualified through a real-time SQL query online-judge round, then built a three-part Tableau dashboard on Indonesia's urban–rural digital divide across 38 provinces, on a star-schema model prepared in Python/pandas.",
   stack: ["SQL", "Python", "pandas", "Tableau"],
   result:
-    "Phones are equal (1.00\u00d7) but laptops are not (2.80\u00d7) \u2014 the gap moved to device, not connection",
+    "Phones have equalised (1.00×). Laptops have not (2.80×). The divide moved from connection to device.",
   demo: "https://public.tableau.com/app/profile/sebastian.1749/viz/Dashboard_17903169196680/1",
-  note: "Team project (Data Seeker). Dashboard published on a teammate\u2019s Tableau Public account.",
+  note: "Team project (Data Seeker). Dashboard published on a teammate's Tableau Public account.",
 };
 
-const skillGroups: { label: string; items: string[] }[] = [
-  { label: "Languages", items: ["Python", "SQL"] },
-  {
-    label: "ML / Deep Learning",
-    items: ["scikit-learn", "XGBoost", "TensorFlow/Keras"],
-  },
-  { label: "Deployment", items: ["FastAPI", "Streamlit", "MLflow"] },
-  { label: "Cloud & Data", items: ["AWS SageMaker", "pandas", "NumPy"] },
-  { label: "Tools", items: ["Tableau", "Git"] },
+const toolkit: { role: string; items: string }[] = [
+  { role: "working in", items: "Python · SQL" },
+  { role: "modelling with", items: "scikit-learn · XGBoost · TensorFlow/Keras · statsmodels" },
+  { role: "shipping on", items: "FastAPI · Streamlit · MLflow · AWS SageMaker" },
+  { role: "reporting in", items: "Tableau · pandas · matplotlib" },
+  { role: "versioning with", items: "Git" },
 ];
 
 const links = [
-  {
-    label: "GitHub",
-    href: "https://github.com/ixircs",
-    icon: (
-      <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 2.5-.35c.85 0 1.71.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
-    ),
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ryan-christopher-setiawan/",
-    icon: (
-      <path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.5 8.5h3.4V21H3.5V8.5Zm6.2 0h3.26v1.71h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-6.63c0-1.58-.03-3.61-2.2-3.61-2.21 0-2.55 1.72-2.55 3.5V21H9.7V8.5Z" />
-    ),
-  },
-  {
-    label: "Email",
-    href: "mailto:ryanchristophersetiawan111@gmail.com",
-    icon: (
-      <path d="M2.5 5.5A1.5 1.5 0 0 1 4 4h16a1.5 1.5 0 0 1 1.5 1.5v13A1.5 1.5 0 0 1 20 20H4a1.5 1.5 0 0 1-1.5-1.5v-13Zm2.2.5 7.3 5.9 7.3-5.9H4.7Zm14.3 1.6-6.86 5.54a1.5 1.5 0 0 1-1.88 0L4.5 7.6V18h15V7.6Z" />
-    ),
-  },
+  { label: "GitHub", href: "https://github.com/ixircs" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ryan-christopher-setiawan/" },
+  { label: "Email", href: "mailto:ryanchristophersetiawan111@gmail.com" },
 ];
-
-function Kicker({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-3">
-      {children}
-    </p>
-  );
-}
 
 export default function Home() {
   return (
-    <div className="relative overflow-hidden">
-      {/* ambient warmth */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.12] blur-[120px]"
-        style={{ background: "var(--accent)" }}
-      />
+    <main className="mx-auto w-full max-w-[1180px] px-5 sm:px-8">
+      {/* ---------- status bar ---------- */}
+      <header className="ruled-b flex items-baseline justify-between gap-4 py-4 text-[13px]">
+        <span className="font-semibold tracking-tight text-[var(--oxblood)]">
+          ryan setiawan
+        </span>
+        <span className="flex items-center gap-2 text-[var(--ink-soft)]">
+          <span
+            aria-hidden
+            className="inline-block h-[7px] w-[7px] rounded-full bg-[var(--oxblood)]"
+          />
+          open to data science internships · jakarta
+        </span>
+      </header>
 
-      <div className="relative mx-auto w-full max-w-3xl px-6 py-20 sm:py-28">
-        {/* Hero */}
-        <header className="mb-24">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-xs text-[var(--muted)] shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-            Open to Data Science / Analyst internships
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-[1.1]">
-            Ryan Christopher
+      {/* ---------- hero ---------- */}
+      <section className="ruled-b py-16 sm:py-24">
+        <div className="grid gap-10 md:grid-cols-12 md:items-end">
+          <h1 className="display col-span-12 text-[clamp(3.2rem,13vw,10rem)] md:col-span-8">
+            ryan
             <br />
-            Setiawan
+            setiawan.
           </h1>
-          <p className="mt-4 max-w-xl text-base sm:text-lg text-[var(--muted)] leading-relaxed">
-            Data Science student at BINUS University — building and
-            deploying machine learning models, from data pipeline to cloud.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] shadow-sm transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4 fill-[var(--muted)] transition-colors group-hover:fill-[var(--accent)]"
-                >
-                  {l.icon}
-                </svg>
-                {l.label}
-              </a>
-            ))}
+          <div className="col-span-12 flex flex-col gap-1 text-[15px] leading-relaxed md:col-span-4 md:pb-3">
+            <p>Data Science, BINUS University</p>
+            <p className="text-[var(--ink-soft)]">Machine learning</p>
+            <p className="text-[var(--ink-soft)]">Deployment</p>
+            <p className="text-[var(--ink-soft)]">Analytics &amp; research</p>
           </div>
-        </header>
+        </div>
+      </section>
 
-        {/* Projects */}
-        <section className="mb-20">
-          <Kicker>Selected Work</Kicker>
-          <h2 className="text-2xl font-semibold mb-8">Featured Projects</h2>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {projects.map((p) => (
+      {/* ---------- approach ---------- */}
+      <section id="approach" className="ruled-b py-16 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">the</p>
+        <h2 className="display mb-10 text-[clamp(2.4rem,7vw,4.6rem)]">approach.</h2>
+        <div className="grid gap-10 md:grid-cols-12">
+          <div className="col-span-12 max-w-[62ch] space-y-5 text-[16px] leading-[1.7] md:col-span-7">
+            <p>
+              I build data projects end to end — ingestion, modelling, and then actually
+              serving the thing, because a model that never leaves a notebook has not been
+              tested against anything.
+            </p>
+            <p>
+              What I care about more is knowing when a result does not hold. In the coffee
+              study, the frost threshold that should have worked found nothing, and the
+              parallel-trends assumption failed, so the project reports no causal estimate at
+              all. In the DataFest analysis, the gap between barrier and non-barrier patients
+              is large, but it is an association and the write-up says so.
+            </p>
+            <p>
+              Every project below states what it found, how it was measured, and where it
+              stops being trustworthy.
+            </p>
+          </div>
+          <dl className="col-span-12 self-start md:col-span-5 md:border-l md:border-[var(--sage-line)] md:pl-8">
+            {[
+              ["Projects published", "6"],
+              ["Largest dataset analysed", "14.4M rows"],
+              ["Live deployments", "3"],
+            ].map(([k, v]) => (
+              <div key={k} className="ruled-b flex items-baseline justify-between gap-4 py-3 first:border-t first:border-[var(--sage-line)] first:pt-3">
+                <dt className="text-[14px] text-[var(--ink-soft)]">{k}</dt>
+                <dd className="text-[18px] font-semibold text-[var(--oxblood)]">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ---------- selected work ---------- */}
+      <section id="work" className="ruled-b py-16 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">selected</p>
+        <h2 className="display mb-10 text-[clamp(2.4rem,7vw,4.6rem)]">work.</h2>
+
+        <ul>
+          {projects.map((p, i) => (
+            <li key={p.slug} className="border-t border-[var(--sage-line)] last:border-b">
               <Link
-                key={p.slug}
                 href={`/projects/${p.slug}`}
-                className="group relative flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-[0_10px_30px_rgba(138,90,52,0.15)]"
+                className="group grid grid-cols-12 items-center gap-x-5 gap-y-4 py-6 transition-colors hover:bg-[var(--oxblood-soft)] sm:py-7"
               >
-                <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-medium text-[var(--foreground)]">
-                    {p.title}
-                  </h3>
-                  <span className="text-xs text-[var(--muted)] whitespace-nowrap">
-                    {p.period}
-                  </span>
-                </div>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
-                  {p.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs text-[var(--accent)]"
-                    >
-                      {s}
+                <div className="col-span-12 sm:col-span-5">
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-[13px] tabular-nums text-[var(--ink-soft)]">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                  ))}
+                    <h3 className="text-[19px] font-semibold leading-snug tracking-tight text-[var(--oxblood)] sm:text-[21px]">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <p className="mt-1.5 pl-8 text-[13px] text-[var(--ink-soft)]">
+                    {p.team} · {p.stack.slice(0, 3).join(" · ")}
+                  </p>
                 </div>
-                <p className="text-sm font-medium text-[var(--accent)]">
+
+                <p className="col-span-12 pl-8 text-[15px] leading-snug sm:col-span-4 sm:pl-0">
                   {p.result}
                 </p>
-                {p.note && (
-                  <p className="text-xs text-[var(--muted)] italic">
-                    {p.note}
-                  </p>
-                )}
-                <span className="mt-1 inline-flex items-center gap-1 text-sm text-[var(--muted)] transition-colors group-hover:text-[var(--accent)]">
-                  View case study
-                  <span className="transition-transform group-hover:translate-x-0.5">
-                    →
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
 
-        {/* Other work */}
-        <section className="mb-20">
-          <Kicker>Competitions</Kicker>
-          <h2 className="text-2xl font-semibold mb-8">Other Work</h2>
-          <article className="flex flex-col gap-3 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm">
-            <h3 className="font-medium text-[var(--foreground)]">
+                <div className="col-span-12 ml-8 sm:col-span-3 sm:ml-0">
+                  <div className="overflow-hidden border border-[var(--sage-line)] bg-[var(--paper)]">
+                    <Image
+                      src={p.images[0].src}
+                      alt=""
+                      width={p.images[0].width}
+                      height={p.images[0].height}
+                      className="h-[76px] w-full object-cover object-left-top opacity-90 transition-opacity group-hover:opacity-100"
+                      sizes="(max-width: 640px) 90vw, 260px"
+                    />
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* ---------- other work ---------- */}
+      <section className="ruled-b py-16 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">one more,</p>
+        <h2 className="display mb-10 text-[clamp(2.4rem,7vw,4.6rem)]">in tableau.</h2>
+        <div className="grid gap-8 md:grid-cols-12">
+          <div className="col-span-12 md:col-span-7">
+            <h3 className="text-[21px] font-semibold tracking-tight text-[var(--oxblood)]">
               {otherWork.title}
             </h3>
-            <p className="text-sm text-[var(--muted)] leading-relaxed">
+            <p className="mt-3 max-w-[62ch] text-[16px] leading-[1.7]">
               {otherWork.description}
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {otherWork.stack.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full bg-[var(--accent-soft)] px-2 py-0.5 text-xs text-[var(--accent)]"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm font-medium text-[var(--accent)]">
+            <p className="mt-4 text-[13px] text-[var(--ink-soft)]">{otherWork.note}</p>
+          </div>
+          <div className="col-span-12 md:col-span-5 md:border-l md:border-[var(--sage-line)] md:pl-8">
+            <p className="text-[17px] font-medium leading-snug text-[var(--oxblood)]">
               {otherWork.result}
             </p>
+            <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-[13px] text-[var(--ink-soft)]">
+              {otherWork.stack.map((s) => (
+                <span key={s}>{s}</span>
+              ))}
+            </div>
             <a
               href={otherWork.demo}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-4 py-2 text-sm text-[var(--accent)] shadow-sm transition-colors hover:border-[var(--accent)]"
+              className="mt-6 inline-block border-b-2 border-[var(--oxblood)] pb-0.5 text-[15px] font-medium text-[var(--oxblood)]"
             >
-              View the dashboard →
+              Open the dashboard
             </a>
-            <p className="text-xs text-[var(--muted)] italic">
-              {otherWork.note}
-            </p>
-          </article>
-        </section>
-
-        {/* Skills */}
-        <section className="mb-20">
-          <Kicker>Toolbox</Kicker>
-          <h2 className="text-2xl font-semibold mb-8">Tech I Use</h2>
-          <div className="flex flex-col gap-4">
-            {skillGroups.map((g) => (
-              <div
-                key={g.label}
-                className="flex flex-col gap-2 sm:flex-row sm:items-center"
-              >
-                <span className="w-40 shrink-0 text-xs uppercase tracking-wide text-[var(--muted)]">
-                  {g.label}
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {g.items.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1 text-sm text-[var(--foreground)]"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="flex flex-col gap-4 border-t border-[var(--border)] pt-8 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-          <p>Jakarta, Indonesia</p>
-          <div className="flex gap-4">
-            {links.map((l) => (
+      {/* ---------- toolkit ---------- */}
+      <section className="ruled-b py-16 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">the</p>
+        <h2 className="display mb-10 text-[clamp(2.4rem,7vw,4.6rem)]">toolkit.</h2>
+        <dl className="max-w-[72ch]">
+          {toolkit.map((t) => (
+            <div
+              key={t.role}
+              className="ruled-b grid grid-cols-12 gap-3 py-4 first:border-t first:border-[var(--sage-line)]"
+            >
+              <dt className="col-span-12 text-[14px] text-[var(--ink-soft)] sm:col-span-4">
+                {t.role}
+              </dt>
+              <dd className="col-span-12 text-[16px] sm:col-span-8">{t.items}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/* ---------- contact ---------- */}
+      <section className="py-16 sm:py-24">
+        <p className="lead-in mb-1 text-[15px]">want to</p>
+        <h2 className="display mb-8 text-[clamp(2.4rem,7vw,4.6rem)]">talk?</h2>
+        <p className="mb-10 max-w-[52ch] text-[16px] leading-[1.7]">
+          I am looking for a data science or analyst internship in Jakarta. The fastest way to
+          reach me is email.
+        </p>
+        <ul className="flex flex-wrap gap-x-10 gap-y-3">
+          {links.map((l) => (
+            <li key={l.label}>
               <a
-                key={l.label}
                 href={l.href}
-                target="_blank"
+                target={l.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noreferrer"
-                className="transition-colors hover:text-[var(--accent)]"
+                className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[17px] font-medium text-[var(--oxblood)]"
               >
                 {l.label}
               </a>
-            ))}
-          </div>
-        </footer>
-      </div>
-    </div>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-16 text-[13px] text-[var(--ink-soft)]">
+          Jakarta, Indonesia · built with Next.js
+        </p>
+      </section>
+    </main>
   );
 }

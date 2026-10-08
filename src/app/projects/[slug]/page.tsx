@@ -17,150 +17,137 @@ export default async function ProjectPage({
   if (!project) return notFound();
 
   return (
-    <div className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.12] blur-[120px]"
-        style={{ background: "var(--accent)" }}
-      />
-
-      <div className="relative mx-auto w-full max-w-3xl px-6 py-16 sm:py-24">
-        <Link
-          href="/"
-          className="mb-10 inline-flex items-center gap-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-        >
-          ← Back to portfolio
+    <main className="mx-auto w-full max-w-[1180px] px-5 sm:px-8">
+      <header className="ruled-b flex items-baseline justify-between gap-4 py-4 text-[13px]">
+        <Link href="/" className="font-semibold tracking-tight text-[var(--oxblood)]">
+          ryan setiawan
         </Link>
+        <Link href="/" className="text-[var(--ink-soft)] hover:text-[var(--oxblood)]">
+          back to all work
+        </Link>
+      </header>
 
-        <header className="mb-12">
-          <div className="mb-3 flex items-center gap-3 text-xs text-[var(--muted)]">
-            <span>{project.period}</span>
-            <span aria-hidden>·</span>
-            <span>{project.team}</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-tight">
-            {project.title}
-          </h1>
-          <p className="mt-4 max-w-xl text-base text-[var(--muted)] leading-relaxed">
-            {project.summary}
-          </p>
+      {/* ---------- title ---------- */}
+      <section className="ruled-b py-14 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">
+          {project.period} · {project.team}
+        </p>
+        <h1 className="display mb-8 text-[clamp(2.4rem,8vw,5.6rem)]">
+          {project.title}.
+        </h1>
+        <p className="max-w-[66ch] text-[17px] leading-[1.7]">{project.summary}</p>
 
-          <div className="mt-6 flex flex-wrap gap-1.5">
-            {project.stack.map((s) => (
-              <span
-                key={s}
-                className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 text-xs text-[var(--accent)]"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
+        <div className="mt-8 flex flex-wrap gap-x-3 gap-y-1 text-[13px] text-[var(--ink-soft)]">
+          {project.stack.map((s) => (
+            <span key={s}>{s}</span>
+          ))}
+        </div>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            {project.repo && (
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] shadow-sm transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
-              >
-                View repository on GitHub →
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-4 py-2 text-sm text-[var(--accent)] shadow-sm transition-colors hover:border-[var(--accent)]"
-              >
-                Open live app →
-              </a>
-            )}
-          </div>
-
-          {project.note && (
-            <p className="mt-4 text-xs text-[var(--muted)] italic max-w-xl">
-              {project.note}
-            </p>
+        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noreferrer"
+              className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[15px] font-medium text-[var(--oxblood)]"
+            >
+              Read the code on GitHub
+            </a>
           )}
-        </header>
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[15px] font-medium text-[var(--oxblood)]"
+            >
+              Open the live app
+            </a>
+          )}
+        </div>
 
-        {/* Metrics */}
-        <section className="mb-14">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-4">
-            Verified Results
+        {project.note && (
+          <p className="mt-8 max-w-[66ch] text-[14px] leading-relaxed text-[var(--ink-soft)]">
+            {project.note}
           </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {project.metrics.map((m) => (
-              <div
-                key={m.label}
-                className="flex items-baseline justify-between gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 shadow-sm"
-              >
-                <span className="text-sm text-[var(--muted)]">{m.label}</span>
-                <span className="text-sm font-semibold text-[var(--foreground)] whitespace-nowrap">
-                  {m.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
+        )}
+      </section>
 
-        {/* Methodology */}
-        <section className="mb-14">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-4">
-            Approach
-          </p>
-          <ol className="flex flex-col gap-4">
-            {project.methodology.map((step, i) => (
-              <li key={i} className="flex gap-4">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-xs font-medium text-[var(--accent)]">
-                  {i + 1}
-                </span>
-                <p className="text-sm text-[var(--foreground)] leading-relaxed">
-                  {step}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </section>
+      {/* ---------- results ---------- */}
+      <section className="ruled-b py-14 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">what it</p>
+        <h2 className="display mb-10 text-[clamp(2rem,6vw,3.6rem)]">measured.</h2>
+        <dl className="max-w-[80ch]">
+          {project.metrics.map((m) => (
+            <div
+              key={m.label}
+              className="ruled-b grid grid-cols-12 items-baseline gap-3 py-4 first:border-t first:border-[var(--sage-line)]"
+            >
+              <dt className="col-span-12 text-[15px] text-[var(--ink-soft)] sm:col-span-7">
+                {m.label}
+              </dt>
+              <dd className="col-span-12 text-[18px] font-semibold tabular-nums text-[var(--oxblood)] sm:col-span-5 sm:text-right">
+                {m.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
 
-        {/* Screenshots */}
-        <section className="mb-14">
-          <p className="text-xs font-medium tracking-[0.2em] uppercase text-[var(--accent)] mb-4">
-            Evidence
-          </p>
-          <div className="flex flex-col gap-8">
+      {/* ---------- approach ---------- */}
+      <section className="ruled-b py-14 sm:py-20">
+        <p className="lead-in mb-1 text-[15px]">how it was</p>
+        <h2 className="display mb-10 text-[clamp(2rem,6vw,3.6rem)]">built.</h2>
+        <ol className="max-w-[72ch]">
+          {project.methodology.map((step, i) => (
+            <li
+              key={i}
+              className="ruled-b grid grid-cols-12 gap-x-5 py-5 first:border-t first:border-[var(--sage-line)]"
+            >
+              <span className="col-span-2 text-[13px] tabular-nums text-[var(--ink-soft)] sm:col-span-1">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="col-span-10 text-[16px] leading-[1.7] sm:col-span-11">{step}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ---------- evidence ---------- */}
+      {project.images.length > 0 && (
+        <section className="ruled-b py-14 sm:py-20">
+          <p className="lead-in mb-1 text-[15px]">the</p>
+          <h2 className="display mb-10 text-[clamp(2rem,6vw,3.6rem)]">evidence.</h2>
+          <div className="flex flex-col gap-12">
             {project.images.map((img) => (
-              <figure
-                key={img.src}
-                className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-sm"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.caption}
-                  width={img.width}
-                  height={img.height}
-                  className="w-full h-auto"
-                  sizes="(max-width: 768px) 100vw, 768px"
-                />
-                <figcaption className="px-4 py-3 text-xs text-[var(--muted)]">
+              <figure key={img.src}>
+                <div className="border border-[var(--sage-line)] bg-[var(--paper)]">
+                  <Image
+                    src={img.src}
+                    alt={img.caption}
+                    width={img.width}
+                    height={img.height}
+                    className="h-auto w-full"
+                    sizes="(max-width: 768px) 100vw, 1100px"
+                  />
+                </div>
+                <figcaption className="mt-3 max-w-[72ch] text-[14px] leading-relaxed text-[var(--ink-soft)]">
                   {img.caption}
                 </figcaption>
               </figure>
             ))}
           </div>
         </section>
+      )}
 
-        <footer className="border-t border-[var(--border)] pt-8">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
-          >
-            ← Back to portfolio
-          </Link>
-        </footer>
-      </div>
-    </div>
+      <section className="py-14 sm:py-20">
+        <Link
+          href="/"
+          className="border-b-2 border-[var(--oxblood)] pb-0.5 text-[17px] font-medium text-[var(--oxblood)]"
+        >
+          Back to all work
+        </Link>
+      </section>
+    </main>
   );
 }
